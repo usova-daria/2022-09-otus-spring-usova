@@ -3,3 +3,7 @@
 *.iws
 *.iml
 *.ipr
+target/
+dependency-reduced-pom.xml
+!**/src/main/**
+!**/src/test/**

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="applicationRunner" class="com.otus.spring.ui.impl.ConsoleApplicationRunner">
+        <constructor-arg name="questionsService" ref="questionsService"/>
+        <constructor-arg name="questionsFormatter" ref="questionFormatter"/>
+    </bean>
+
+    <bean id="questionFormatter" class="com.otus.spring.ui.impl.QuestionsFormatter">
+    </bean>
+
+    <bean id="questionsService" class="com.otus.spring.service.impl.QuestionsServiceImpl">
+        <constructor-arg name="questionsDao" ref="questionsDao"/>
+    </bean>
+
+    <bean id="questionsDao" class="com.otus.spring.dao.impl.CsvQuestionsDao">
+        <constructor-arg name="questionsSource" value="questions.csv"/>
+        <constructor-arg name="parser" ref="csvParser"/>
+    </bean>
+
+    <bean id="csvParser" class="com.otus.spring.dao.impl.CsvQuestionsParser">
+    </bean>
+
+</beans>
