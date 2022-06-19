@@ -9,10 +9,10 @@
         <constructor-arg name="printer" ref="printer"/>
         <constructor-arg name="reader" ref="reader"/>
         <constructor-arg name="resourceBundleHolder" ref="resourceBundleHolder"/>
-        <constructor-arg name="answersParser" ref="answersParsers"/>
+        <constructor-arg name="answersParser" ref="answersParser"/>
     </bean>
 
-    <bean id="answersParsers" class="com.otus.spring.ui.impl.AnswersParser">
+    <bean id="answersParser" class="com.otus.spring.ui.impl.AnswersParser">
         <constructor-arg name="resourceBundleHolder" ref="resourceBundleHolder"/>
     </bean>
 
