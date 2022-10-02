@@ -23,7 +23,7 @@
     </bean>
 
     <bean id="resourceBundleHolder" class="com.otus.spring.ui.impl.ResourceBundleHolderImpl">
-        <constructor-arg name="resourceBundleName" value="messages"/>
+        <constructor-arg name="resourceBundleName" value="${resourceBundleName}"/>
         <constructor-arg name="language" value="${language}" />
         <constructor-arg name="country" value="${country}" />
     </bean>
