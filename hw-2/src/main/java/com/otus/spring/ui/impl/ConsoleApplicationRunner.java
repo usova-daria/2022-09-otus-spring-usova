@@ -42,7 +42,7 @@ public class ConsoleApplicationRunner implements ApplicationRunner {
             TestReport report = new TestReport(credentials);
 
             List<Question> questions = questionsService.getQuestions();
-            questions.forEach(q -> askOneQuestion(q, report));
+            questions.forEach(q -> askOneQuestionAndFillInReport(q, report));
             printResults(report);
         } catch (RuntimeException e) {
             e.printStackTrace();
@@ -62,7 +62,7 @@ public class ConsoleApplicationRunner implements ApplicationRunner {
         return new TestReport.Credentials(firstName, lastName);
     }
 
-    private void askOneQuestion(Question question, TestReport testReport) {
+    private void askOneQuestionAndFillInReport(Question question, TestReport testReport) {
         printer.println( questionsFormatter.format(question) );
         List<Answer> answers = readAnswers(question);
         testReport.addResult(question, answers);
