@@ -8,10 +8,11 @@ import java.util.ResourceBundle;
 public class ResourceBundleHolderImpl implements ResourceBundleHolder {
 
     private final String resourceBundleName;
-    private Locale locale = Locale.getDefault();
+    private Locale locale;
 
-    public ResourceBundleHolderImpl(String resourceBundleName) {
+    public ResourceBundleHolderImpl(String resourceBundleName, String language, String country) {
         this.resourceBundleName = resourceBundleName;
+        locale = new Locale(language, country);
     }
 
     @Override

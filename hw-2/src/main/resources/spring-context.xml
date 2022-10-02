@@ -18,6 +18,8 @@
 
     <bean id="resourceBundleHolder" class="com.otus.spring.ui.impl.ResourceBundleHolderImpl">
         <constructor-arg name="resourceBundleName" value="messages"/>
+        <constructor-arg name="language" value="en" />
+        <constructor-arg name="country" value="US" />
     </bean>
 
     <bean id="questionFormatter" class="com.otus.spring.ui.impl.QuestionsFormatter"/>
