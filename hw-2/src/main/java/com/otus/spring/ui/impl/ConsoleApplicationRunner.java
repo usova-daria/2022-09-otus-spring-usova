@@ -46,7 +46,7 @@ public class ConsoleApplicationRunner implements ApplicationRunner {
             printResults(report);
         } catch (RuntimeException e) {
             e.printStackTrace();
-            printer.print("Unexpected exception. Exit program");
+            printer.println("Unexpected exception. Exit program");
         }
     }
 

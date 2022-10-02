@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:application.properties"/>
 
     <bean id="applicationRunner" class="com.otus.spring.ui.impl.ConsoleApplicationRunner">
         <constructor-arg name="questionsService" ref="questionsService"/>
@@ -18,8 +24,8 @@
 
     <bean id="resourceBundleHolder" class="com.otus.spring.ui.impl.ResourceBundleHolderImpl">
         <constructor-arg name="resourceBundleName" value="messages"/>
-        <constructor-arg name="language" value="en" />
-        <constructor-arg name="country" value="US" />
+        <constructor-arg name="language" value="${language}" />
+        <constructor-arg name="country" value="${country}" />
     </bean>
 
     <bean id="questionFormatter" class="com.otus.spring.ui.impl.QuestionsFormatter"/>
@@ -33,7 +39,7 @@
     </bean>
 
     <bean id="questionsDao" class="com.otus.spring.dao.impl.CsvQuestionsDao">
-        <constructor-arg name="questionsSource" value="questions.csv"/>
+        <constructor-arg name="questionsSource" value="${questions.file}"/>
         <constructor-arg name="parser" ref="csvParser"/>
         <constructor-arg name="mapper" ref="questionMapper"/>
     </bean>
