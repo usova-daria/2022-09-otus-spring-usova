@@ -6,12 +6,14 @@ import com.otus.spring.model.TestReport;
 import com.otus.spring.service.api.QuestionsService;
 import com.otus.spring.ui.api.ApplicationRunner;
 import com.otus.spring.ui.api.ResourceBundleHolder;
+import org.springframework.stereotype.Component;
 
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Component
 public class ConsoleApplicationRunner implements ApplicationRunner {
 
     private final QuestionsService questionsService;

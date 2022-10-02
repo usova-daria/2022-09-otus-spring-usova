@@ -3,6 +3,7 @@ package com.otus.spring.dao.mapper;
 import com.otus.spring.dao.validator.QuestionValidator;
 import com.otus.spring.model.Answer;
 import com.otus.spring.model.Question;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -11,6 +12,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Component
 public class QuestionMapper {
 
     public final static String CORRECT_ANSWER_SEPARATOR = "-";

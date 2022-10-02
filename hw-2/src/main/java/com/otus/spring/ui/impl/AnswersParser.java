@@ -1,6 +1,7 @@
 package com.otus.spring.ui.impl;
 
 import com.otus.spring.ui.api.ResourceBundleHolder;
+import org.springframework.stereotype.Component;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
@@ -8,6 +9,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+@Component
 public class AnswersParser {
 
     public static String ANSWERS_SEPARATOR = ",";

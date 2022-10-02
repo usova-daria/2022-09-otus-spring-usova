@@ -1,9 +1,11 @@
 package com.otus.spring.ui.impl;
 
 import com.otus.spring.model.Question;
+import org.springframework.stereotype.Component;
 
 import static com.otus.spring.ui.impl.Printer.NEW_LINE;
 
+@Component
 public class QuestionsFormatter {
 
     public String format(Question question) {

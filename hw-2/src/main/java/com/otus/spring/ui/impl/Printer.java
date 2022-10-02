@@ -1,5 +1,8 @@
 package com.otus.spring.ui.impl;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Printer {
 
     public final static String NEW_LINE = System.lineSeparator();

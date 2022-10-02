@@ -1,6 +1,7 @@
 package com.otus.spring.dao.impl;
 
 import com.otus.spring.exception.ValidationError;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+@Component
 public class CsvRowParser {
 
     /**

@@ -1,6 +1,7 @@
 package com.otus.spring.dao.validator;
 
 import com.otus.spring.exception.ValidationError;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.regex.Pattern;
 
 import static com.otus.spring.dao.mapper.QuestionMapper.CORRECT_ANSWER_SEPARATOR;
 
+@Component
 public class QuestionValidator {
 
     /**
