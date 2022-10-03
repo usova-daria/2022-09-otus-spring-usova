@@ -11,16 +11,12 @@ public class Printer {
         System.out.print(output);
     }
 
-    public void println() {
-        println(NEW_LINE);
+    public void printBlankLine() {
+        print(NEW_LINE);
     }
 
     public void println(String output) {
         print(output + NEW_LINE);
-    }
-
-    public void breakLine() {
-        print(NEW_LINE);
     }
 
 }

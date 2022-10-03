@@ -60,7 +60,7 @@ public class ConsoleApplicationRunner implements ApplicationRunner {
     private TestReport.Credentials getCredentials() {
         String firstName = readNotBlankInput(resourceBundleHolder.getBundle().getString("first.name"));
         String lastName = readNotBlankInput(resourceBundleHolder.getBundle().getString("last.name"));
-        printer.println();
+        printer.printBlankLine();
         return new TestReport.Credentials(firstName, lastName);
     }
 
@@ -68,7 +68,7 @@ public class ConsoleApplicationRunner implements ApplicationRunner {
         printer.println( questionsFormatter.format(question) );
         List<Answer> answers = readAnswers(question);
         testReport.addResult(question, answers);
-        printer.println();
+        printer.printBlankLine();
     }
 
     private List<Answer> readAnswers(Question question) {
@@ -80,8 +80,12 @@ public class ConsoleApplicationRunner implements ApplicationRunner {
                     .map(i -> allAnswers.get(i - 1))
                     .collect(Collectors.toList());
         } catch (InputFormatException e) {
+            String correctFormat = MessageFormat.format(
+                    resourceBundleHolder.getBundle().getString(e.getInvalidFormat().getMessageKey()),
+                    e.getParams().toArray()
+            );
             String pattern = resourceBundleHolder.getBundle().getString("wrong.format.exception");
-            printer.println(MessageFormat.format(pattern, e.getCorrectFormat()));
+            printer.println( MessageFormat.format(pattern, correctFormat) );
             return readAnswers(question);
         }
     }
