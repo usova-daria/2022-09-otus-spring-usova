@@ -41,7 +41,7 @@ public class QuestionValidator {
         if (Arrays.stream(correctAnswer.split(CORRECT_ANSWER_SEPARATOR))
                 .map(Integer::parseInt)
                 .anyMatch(i -> i >= numberOfAnswers)) {
-            throw new ValidationError("There is a correct answer out of correct answers range. Answers should be between 1 and " + numberOfAnswers);
+            throw new ValidationError("One of correct answers is out of range. Answers should be between 0 and " + numberOfAnswers);
         }
     }
 
