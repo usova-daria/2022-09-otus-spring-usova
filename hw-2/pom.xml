@@ -15,6 +15,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>5.3.20</spring.version>
         <junit.version>5.8.2</junit.version>
+        <mockito.version>4.8.0</mockito.version>
         <log4j2.version>2.17.2</log4j2.version>
         <mvn.surefire.version>2.22.2</mvn.surefire.version>
         <mvn.jar.version>3.1.2</mvn.jar.version>
@@ -62,6 +63,21 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Plugins -->
         <dependency>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
