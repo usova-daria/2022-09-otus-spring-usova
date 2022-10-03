@@ -37,7 +37,8 @@ class QuestionValidatorTest {
                 List.of("Question?", "first answer", "0"),
                 List.of("Question?", "first answer", "second answer"),
                 List.of("Question?", "first answer", "second answer", "3"),
-                List.of("Question?", "first answer", "second answer", joinCorrectAnswersWithSeparator("0", "12"))
+                List.of("Question?", "first answer", "second answer", joinCorrectAnswersWithSeparator("0", "12")),
+                List.of("Question?", "first answer", "second answer", "a number is expected")
         );
     }
 
