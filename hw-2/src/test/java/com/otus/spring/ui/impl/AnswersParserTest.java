@@ -1,5 +1,6 @@
 package com.otus.spring.ui.impl;
 
+import com.otus.spring.ui.api.AnswersParser;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -14,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AnswersParserTest {
 
-    private final AnswersParser parser = new AnswersParser();
+    private final AnswersParser parser = new AnswersParserImpl();
 
     private static Stream<Arguments> happyData() {
         return Stream.of(

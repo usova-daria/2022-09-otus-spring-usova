@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 public class ResourceBundleHolderImpl implements ResourceBundleHolder {
 
     private final String resourceBundleName;
-    private Locale locale;
+    private final Locale locale;
 
     public ResourceBundleHolderImpl(@Value("${resourceBundleName}") String resourceBundleName,
                                     @Value("${language}") String language,
@@ -23,11 +23,6 @@ public class ResourceBundleHolderImpl implements ResourceBundleHolder {
     @Override
     public ResourceBundle getBundle() {
         return ResourceBundle.getBundle(resourceBundleName, locale);
-    }
-
-    @Override
-    public void setLocale(Locale locale) {
-        this.locale = locale;
     }
 
 }

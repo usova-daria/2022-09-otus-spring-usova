@@ -1,5 +1,6 @@
 package com.otus.spring.ui.impl;
 
+import com.otus.spring.ui.api.AnswersParser;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -9,9 +10,9 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Component
-public class AnswersParser {
+public class AnswersParserImpl implements AnswersParser {
 
-    public static String ANSWERS_SEPARATOR = ",";
+    private final static String ANSWERS_SEPARATOR = ConfigurationConstants.ANSWERS_SEPARATOR;
     private final static String ANSWER_REGEX = "(\\d+\\s*" + ANSWERS_SEPARATOR + "*\\s*)+";
     private final static Pattern ANSWER_PATTERN = Pattern.compile(ANSWER_REGEX);
 
