@@ -16,6 +16,7 @@ public class AnswersParserImpl implements AnswersParser {
     private final static String ANSWER_REGEX = "(\\d+\\s*" + ANSWERS_SEPARATOR + "*\\s*)+";
     private final static Pattern ANSWER_PATTERN = Pattern.compile(ANSWER_REGEX);
 
+    @Override
     public Set<Integer> parseAnswers(String input, int maxIndex) {
         if (input == null || !ANSWER_PATTERN.matcher(input).matches()) {
             throw new InputFormatException( InputFormatException.Format.DIGITS_WITH_SEPARATOR, List.of(ANSWERS_SEPARATOR) );
