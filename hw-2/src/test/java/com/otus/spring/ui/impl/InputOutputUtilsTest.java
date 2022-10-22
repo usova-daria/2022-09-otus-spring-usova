@@ -3,13 +3,15 @@ package com.otus.spring.ui.impl;
 import com.otus.spring.ui.api.Reader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.util.StringUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 class InputOutputUtilsTest {
 
     @Mock
@@ -19,7 +21,6 @@ class InputOutputUtilsTest {
 
     @BeforeEach
     void init() {
-        reader = mock(Reader.class);
         printer = new TestPrinter();
     }
 
