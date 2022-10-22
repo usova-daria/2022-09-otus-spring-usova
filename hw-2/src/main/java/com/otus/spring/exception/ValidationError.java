@@ -1,6 +1,6 @@
 package com.otus.spring.exception;
 
-public class ValidationError extends RuntimeException {
+public class ValidationError extends TestingAppException {
 
     public ValidationError() {
         super();

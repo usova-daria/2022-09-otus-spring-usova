@@ -1,6 +1,6 @@
 package com.otus.spring.exception;
 
-public class TechnicalException extends RuntimeException {
+public class TechnicalException extends TestingAppException {
 
     public TechnicalException() {
     }
