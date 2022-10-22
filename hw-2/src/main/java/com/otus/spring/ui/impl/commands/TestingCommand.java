@@ -55,6 +55,14 @@ public class TestingCommand implements Command {
         questions.forEach(q -> askOneQuestionAndFillInReport(q, report));
     }
 
+    @Override
+    public TestReport getResult() {
+        if (report == null) {
+            throw new IllegalStateException("the command should be executed first");
+        }
+        return report;
+    }
+
     private void askOneQuestionAndFillInReport(Question question, TestReport testReport) {
         printer.println( questionsFormatter.format(question) );
         List<Answer> answers = readAnswers(question);
@@ -80,14 +88,6 @@ public class TestingCommand implements Command {
             printer.println( MessageFormat.format(pattern, correctFormat) );
             return readAnswers(question);
         }
-    }
-
-    @Override
-    public TestReport getResult() {
-        if (report == null) {
-            throw new IllegalStateException("the command should be executed first");
-        }
-        return report;
     }
 
 }
