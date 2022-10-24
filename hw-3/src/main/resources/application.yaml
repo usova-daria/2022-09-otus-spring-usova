@@ -1,0 +1,7 @@
+questions:
+  file: questions.csv
+
+content:
+  resourceBundleName: messages
+  language: en
+  country: US
