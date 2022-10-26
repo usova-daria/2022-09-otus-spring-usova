@@ -1,5 +1,6 @@
 package com.otus.spring.dao.impl;
 
+import com.otus.spring.config.ContentConfig;
 import com.otus.spring.dao.api.QuestionsDao;
 import com.otus.spring.dao.mapper.QuestionMapper;
 import com.otus.spring.exception.TechnicalException;
@@ -24,8 +25,10 @@ public class CsvQuestionsDao implements QuestionsDao {
     private final Logger logger = LoggerFactory.getLogger(CsvQuestionsDao.class);
 
     public CsvQuestionsDao(@Value("${questions.file}") String questionsSource,
+                           ContentConfig contentConfig,
                            CsvRowParser parser, QuestionMapper mapper) {
-        this.questionsSource = questionsSource;
+        this.questionsSource = questionsSource + "_" + contentConfig.getLanguage() +
+                                                 "_" + contentConfig.getCountry() + ".csv";
         this.parser = parser;
         this.mapper = mapper;
     }

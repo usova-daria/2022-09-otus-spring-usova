@@ -1,8 +1,10 @@
 package com.otus.spring.dao.impl;
 
+import com.otus.spring.config.ContentConfig;
 import com.otus.spring.dao.mapper.QuestionMapper;
 import com.otus.spring.dao.validator.QuestionValidator;
 import com.otus.spring.exception.TechnicalException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,11 +13,25 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CsvQuestionsDaoTest {
 
-    private final CsvQuestionsDao csvQuestionsDao = new CsvQuestionsDao(
-            "test-questions.csv",
-            new CsvRowParser(),
-            new QuestionMapper(new QuestionValidator())
-    );
+    CsvQuestionsDao csvQuestionsDao;
+
+    @BeforeEach
+    void init() {
+        csvQuestionsDao = createDao("test-questions");
+    }
+
+    private CsvQuestionsDao createDao(String questionFile) {
+        var contentConfig = new ContentConfig();
+        contentConfig.setLanguage("en");
+        contentConfig.setCountry("US");
+        contentConfig.setDefaultMessage("TBD");
+
+        return new CsvQuestionsDao(
+                questionFile, contentConfig,
+                new CsvRowParser(),
+                new QuestionMapper(new QuestionValidator())
+        );
+    }
 
     @Test
     void testReadQuestions() {
@@ -29,11 +45,7 @@ class CsvQuestionsDaoTest {
 
     @Test
     void testReadQuestions_noFile() {
-        CsvQuestionsDao csvQuestionsDaoWithNoFile = new CsvQuestionsDao(
-                "do-not-exist.csv",
-                new CsvRowParser(),
-                new QuestionMapper(new QuestionValidator())
-        );
+        CsvQuestionsDao csvQuestionsDaoWithNoFile = createDao("do-not-exist");
         assertThrows(TechnicalException.class, csvQuestionsDaoWithNoFile::readQuestions);
     }
 

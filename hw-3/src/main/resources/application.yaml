@@ -4,7 +4,7 @@ spring:
     encoding: UTF-8
 
 questions:
-  file: questions.csv
+  file: questions
 
 content:
   default_message: TBD
