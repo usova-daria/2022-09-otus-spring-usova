@@ -7,12 +7,21 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "content")
 public class ContentConfig {
 
-    private String resourceBundleName;
     private String language;
     private String country;
 
-    public void setResourceBundleName(String resourceBundleName) {
-        this.resourceBundleName = resourceBundleName;
+    private String defaultMessage;
+
+    public String getDefaultMessage() {
+        return defaultMessage;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public String getCountry() {
+        return country;
     }
 
     public void setLanguage(String language) {
@@ -23,16 +32,8 @@ public class ContentConfig {
         this.country = country;
     }
 
-    public String getResourceBundleName() {
-        return resourceBundleName;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public String getCountry() {
-        return country;
+    public void setDefaultMessage(String defaultMessage) {
+        this.defaultMessage = defaultMessage;
     }
 
 }

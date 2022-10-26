@@ -1,9 +1,11 @@
 package com.otus.spring.ui.impl;
 
 import com.otus.spring.ui.api.ApplicationRunner;
+import com.otus.spring.ui.api.MessageSourceHolder;
 import com.otus.spring.ui.api.Printer;
-import com.otus.spring.ui.api.ResourceBundleHolder;
 import com.otus.spring.ui.api.commands.Command;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,12 +17,14 @@ public class ApplicationRunnerImpl implements ApplicationRunner {
 
     private final List<Command> commands;
 
-    private final ResourceBundleHolder resourceBundleHolder;
+    private final MessageSourceHolder messageSourceHolder;
 
-    public ApplicationRunnerImpl(Printer printer, List<Command> commands, ResourceBundleHolder resourceBundleHolder) {
+    private final Logger logger = LoggerFactory.getLogger(ApplicationRunnerImpl.class);
+
+    public ApplicationRunnerImpl(Printer printer, List<Command> commands, MessageSourceHolder messageSourceHolder) {
         this.printer = printer;
         this.commands = commands;
-        this.resourceBundleHolder = resourceBundleHolder;
+        this.messageSourceHolder = messageSourceHolder;
     }
 
     @Override
@@ -32,8 +36,8 @@ public class ApplicationRunnerImpl implements ApplicationRunner {
                 prevResult = command.getResult();
             }
         } catch (RuntimeException e) {
-            e.printStackTrace();
-            printer.println(resourceBundleHolder.getBundle().getString("unexpected.error"));
+            logger.error(e.getMessage(), e);
+            printer.println(messageSourceHolder.getMessage("unexpected.error"));
         }
     }
 

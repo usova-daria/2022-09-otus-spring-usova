@@ -1,13 +1,11 @@
 package com.otus.spring.ui.impl.commands;
 
+import com.otus.spring.ui.api.MessageSourceHolder;
 import com.otus.spring.ui.api.Printer;
-import com.otus.spring.ui.api.ResourceBundleHolder;
 import com.otus.spring.ui.api.commands.Command;
 import com.otus.spring.ui.impl.ConfigurationConstants;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-
-import java.text.MessageFormat;
 
 @Order(1)
 @Component
@@ -15,17 +13,17 @@ public class WelcomeCommand implements Command {
 
     private final Printer printer;
 
-    private final ResourceBundleHolder resourceBundleHolder;
+    private final MessageSourceHolder messageSourceHolder;
 
-    public WelcomeCommand(Printer printer, ResourceBundleHolder resourceBundleHolder) {
+    public WelcomeCommand(Printer printer, MessageSourceHolder messageSourceHolder) {
         this.printer = printer;
-        this.resourceBundleHolder = resourceBundleHolder;
+        this.messageSourceHolder = messageSourceHolder;
     }
 
     @Override
     public void run(Object input) {
-        String pattern = resourceBundleHolder.getBundle().getString("welcome");
-        printer.println( MessageFormat.format(pattern, ConfigurationConstants.ANSWERS_SEPARATOR) );
+        String welcome = messageSourceHolder.getMessage("welcome", ConfigurationConstants.ANSWERS_SEPARATOR);
+        printer.println( welcome );
     }
 
     @Override

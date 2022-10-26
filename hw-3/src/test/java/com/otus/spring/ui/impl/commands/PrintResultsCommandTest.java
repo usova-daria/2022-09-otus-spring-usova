@@ -1,39 +1,37 @@
-package com.otus.spring.impl.commands;
+package com.otus.spring.ui.impl.commands;
 
-import com.otus.spring.config.ContentConfig;
-import com.otus.spring.impl.TestPrinter;
 import com.otus.spring.model.Answer;
 import com.otus.spring.model.Question;
 import com.otus.spring.model.TestReport;
-import com.otus.spring.ui.api.ResourceBundleHolder;
-import com.otus.spring.ui.impl.ResourceBundleHolderImpl;
-import com.otus.spring.ui.impl.commands.PrintResultsCommand;
+import com.otus.spring.ui.api.MessageSourceHolder;
+import com.otus.spring.ui.api.Printer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.verify;
 
+@ExtendWith(MockitoExtension.class)
 class PrintResultsCommandTest {
 
-    TestPrinter printer;
+    @Mock
+    Printer printer;
 
-    ResourceBundleHolder resourceBundleHolder;
+    @Mock
+    MessageSourceHolder messageSourceHolder;
 
     PrintResultsCommand command;
 
     @BeforeEach
     void init() {
-        var contentConfig = new ContentConfig();
-        contentConfig.setResourceBundleName("messages");
-        contentConfig.setLanguage("ru");
-        contentConfig.setCountry("RU");
-
-        printer = new TestPrinter();
-        resourceBundleHolder = new ResourceBundleHolderImpl(contentConfig);
-        command = new PrintResultsCommand(printer, resourceBundleHolder);
+        command = new PrintResultsCommand(printer, messageSourceHolder);
     }
 
     private Question createQuestion() {
@@ -57,7 +55,7 @@ class PrintResultsCommandTest {
 
         command.run(report);
 
-        assertTrue(printer.getPrinted().contains("first name last name-1-1"));
+        verify(messageSourceHolder).getMessage("results", "first name last name", 1, 1);
         assertNull(command.getResult());
     }
 

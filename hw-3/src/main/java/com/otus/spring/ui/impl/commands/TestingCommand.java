@@ -11,7 +11,6 @@ import com.otus.spring.ui.impl.InputOutputUtils;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import java.text.MessageFormat;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -25,7 +24,7 @@ public class TestingCommand implements Command {
     private final Reader reader;
     private final QuestionsService questionsService;
     private final AnswersParser answersParser;
-    private final ResourceBundleHolder resourceBundleHolder;
+    private final MessageSourceHolder messageSourceHolder;
 
     private TestReport report;
 
@@ -34,13 +33,13 @@ public class TestingCommand implements Command {
                           Reader reader,
                           QuestionsService questionsService,
                           AnswersParser answersParser,
-                          ResourceBundleHolder resourceBundleHolder) {
+                          MessageSourceHolder messageSourceHolder) {
         this.questionsFormatter = questionsFormatter;
         this.printer = printer;
         this.reader = reader;
         this.questionsService = questionsService;
         this.answersParser = answersParser;
-        this.resourceBundleHolder = resourceBundleHolder;
+        this.messageSourceHolder = messageSourceHolder;
     }
 
     @Override
@@ -48,6 +47,7 @@ public class TestingCommand implements Command {
         if ( !(input instanceof TestReport.Credentials) ) {
             throw new IllegalArgumentException("expected input is TestReport.Credentials");
         }
+
         TestReport.Credentials credentials = (TestReport.Credentials) input;
         report = new TestReport(credentials);
 
@@ -73,19 +73,17 @@ public class TestingCommand implements Command {
     private List<Answer> readAnswers(Question question) {
         try {
             String answer = InputOutputUtils.readNotBlankInput(printer, reader,
-                    resourceBundleHolder.getBundle().getString("answer"));
+                    messageSourceHolder.getMessage("answer"));
             List<Answer> allAnswers = question.getAnswers();
             Set<Integer> userAnswers = answersParser.parseAnswers(answer, allAnswers.size());
             return userAnswers.stream()
                     .map(i -> allAnswers.get(i - 1))
                     .collect(Collectors.toList());
         } catch (InputFormatException e) {
-            String correctFormat = MessageFormat.format(
-                    resourceBundleHolder.getBundle().getString(e.getInvalidFormat().getMessageKey()),
-                    e.getParams().toArray()
-            );
-            String pattern = resourceBundleHolder.getBundle().getString("wrong.format.exception");
-            printer.println( MessageFormat.format(pattern, correctFormat) );
+            String correctFormat = messageSourceHolder.getMessage(e.getInvalidFormat().getMessageKey(),
+                                                                  e.getParams().toArray());
+            String exceptionMessage = messageSourceHolder.getMessage("wrong.format.exception", correctFormat);
+            printer.println( exceptionMessage );
             return readAnswers(question);
         }
     }

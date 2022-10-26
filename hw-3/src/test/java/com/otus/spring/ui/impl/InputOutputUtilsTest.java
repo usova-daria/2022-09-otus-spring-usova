@@ -1,16 +1,13 @@
-package com.otus.spring.impl;
+package com.otus.spring.ui.impl;
 
+import com.otus.spring.ui.api.Printer;
 import com.otus.spring.ui.api.Reader;
-import com.otus.spring.ui.impl.InputOutputUtils;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.util.StringUtils;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class InputOutputUtilsTest {
@@ -18,12 +15,8 @@ class InputOutputUtilsTest {
     @Mock
     Reader reader;
 
-    TestPrinter printer;
-
-    @BeforeEach
-    void init() {
-        printer = new TestPrinter();
-    }
+    @Mock
+    Printer printer;
 
     @Test
     void testReadNotBlankInput() {
@@ -34,7 +27,7 @@ class InputOutputUtilsTest {
 
         var message = "message";
         InputOutputUtils.readNotBlankInput(printer, reader, message);
-        assertEquals(3, StringUtils.countOccurrencesOf(printer.getPrinted(), message));
+        verify(printer, times(3)).print("message ");
     }
 
 }

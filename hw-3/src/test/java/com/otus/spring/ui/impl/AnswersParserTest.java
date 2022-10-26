@@ -1,8 +1,6 @@
-package com.otus.spring.impl;
+package com.otus.spring.ui.impl;
 
 import com.otus.spring.ui.api.AnswersParser;
-import com.otus.spring.ui.impl.AnswersParserImpl;
-import com.otus.spring.ui.impl.InputFormatException;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;

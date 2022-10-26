@@ -1,9 +1,8 @@
-package com.otus.spring.impl;
+package com.otus.spring.ui.impl;
 
 import com.otus.spring.model.Answer;
 import com.otus.spring.model.Question;
 import com.otus.spring.ui.api.QuestionsFormatter;
-import com.otus.spring.ui.impl.QuestionsFormatterImpl;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedHashMap;

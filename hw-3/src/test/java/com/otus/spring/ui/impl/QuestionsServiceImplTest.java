@@ -1,4 +1,4 @@
-package com.otus.spring.impl;
+package com.otus.spring.ui.impl;
 
 import com.otus.spring.dao.api.QuestionsDao;
 import com.otus.spring.model.Answer;
