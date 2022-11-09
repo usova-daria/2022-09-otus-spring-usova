@@ -26,6 +26,8 @@ public class TestingCommand implements Command {
     private final AnswersParser answersParser;
     private final MessageSourceHolder messageSourceHolder;
 
+    private final InputOutputUtils inputOutputUtils;
+
     private TestReport report;
 
     public TestingCommand(QuestionsFormatter questionsFormatter,
@@ -33,13 +35,15 @@ public class TestingCommand implements Command {
                           Reader reader,
                           QuestionsService questionsService,
                           AnswersParser answersParser,
-                          MessageSourceHolder messageSourceHolder) {
+                          MessageSourceHolder messageSourceHolder,
+                          InputOutputUtils inputOutputUtils) {
         this.questionsFormatter = questionsFormatter;
         this.printer = printer;
         this.reader = reader;
         this.questionsService = questionsService;
         this.answersParser = answersParser;
         this.messageSourceHolder = messageSourceHolder;
+        this.inputOutputUtils = inputOutputUtils;
     }
 
     @Override
@@ -72,7 +76,7 @@ public class TestingCommand implements Command {
 
     private List<Answer> readAnswers(Question question) {
         try {
-            String answer = InputOutputUtils.readNotBlankInput(printer, reader,
+            String answer = inputOutputUtils.readNotBlankInput(printer, reader,
                     messageSourceHolder.getMessage("answer"));
             List<Answer> allAnswers = question.getAnswers();
             Set<Integer> userAnswers = answersParser.parseAnswers(answer, allAnswers.size());

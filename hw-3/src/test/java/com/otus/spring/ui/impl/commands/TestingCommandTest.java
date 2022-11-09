@@ -6,6 +6,7 @@ import com.otus.spring.model.TestReport;
 import com.otus.spring.service.api.QuestionsService;
 import com.otus.spring.ui.api.*;
 import com.otus.spring.ui.impl.InputFormatException;
+import com.otus.spring.ui.impl.InputOutputUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,13 +42,17 @@ class TestingCommandTest {
     @Mock
     MessageSourceHolder messageSourceHolder;
 
+    InputOutputUtils inputOutputUtils;
+
     QuestionsFormatter questionsFormatter;
     TestingCommand command;
 
     @BeforeEach
     void init() {
         questionsFormatter = Question::getText;
-        command = new TestingCommand(questionsFormatter, printer, reader, questionsService, answersParser, messageSourceHolder);
+        inputOutputUtils = (printer, reader, inputMessage) -> reader.read();
+        command = new TestingCommand(questionsFormatter, printer, reader, questionsService,
+                answersParser, messageSourceHolder, inputOutputUtils);
     }
 
     private Question createQuestion() {

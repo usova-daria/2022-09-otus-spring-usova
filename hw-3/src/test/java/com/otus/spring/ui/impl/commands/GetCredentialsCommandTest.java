@@ -3,6 +3,7 @@ package com.otus.spring.ui.impl.commands;
 import com.otus.spring.ui.api.MessageSourceHolder;
 import com.otus.spring.ui.api.Printer;
 import com.otus.spring.ui.api.Reader;
+import com.otus.spring.ui.impl.InputOutputUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,11 +27,14 @@ class GetCredentialsCommandTest {
     @Mock
     MessageSourceHolder messageSourceHolder;
 
+    InputOutputUtils inputOutputUtils;
+
     GetCredentialsCommand command;
 
     @BeforeEach
     void init() {
-        command = new GetCredentialsCommand(printer, reader, messageSourceHolder);
+        inputOutputUtils = (printer, reader, inputMessage) -> reader.read();
+        command = new GetCredentialsCommand(printer, reader, messageSourceHolder, inputOutputUtils);
     }
 
     @Test

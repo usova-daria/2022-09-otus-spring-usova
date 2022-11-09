@@ -18,6 +18,8 @@ class InputOutputUtilsTest {
     @Mock
     Printer printer;
 
+    InputOutputUtilsImpl inputOutputUtils = new InputOutputUtilsImpl();
+
     @Test
     void testReadNotBlankInput() {
         when(reader.read())
@@ -26,7 +28,7 @@ class InputOutputUtilsTest {
                 .thenReturn("output");
 
         var message = "message";
-        InputOutputUtils.readNotBlankInput(printer, reader, message);
+        inputOutputUtils.readNotBlankInput(printer, reader, message);
         verify(printer, times(3)).print("message ");
     }
 

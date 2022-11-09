@@ -19,19 +19,24 @@ public class GetCredentialsCommand implements Command {
 
     private final MessageSourceHolder messageSourceHolder;
 
+    private final InputOutputUtils inputOutputUtils;
+
     private TestReport.Credentials credentials;
 
-    public GetCredentialsCommand(Printer printer, Reader reader, MessageSourceHolder messageSourceHolder) {
+
+    public GetCredentialsCommand(Printer printer, Reader reader,
+                                 MessageSourceHolder messageSourceHolder, InputOutputUtils inputOutputUtils) {
         this.printer = printer;
         this.reader = reader;
         this.messageSourceHolder = messageSourceHolder;
+        this.inputOutputUtils = inputOutputUtils;
     }
 
     @Override
     public void run(Object input) {
-        String firstName = InputOutputUtils.readNotBlankInput(printer, reader,
+        String firstName = inputOutputUtils.readNotBlankInput(printer, reader,
                 messageSourceHolder.getMessage("first.name"));
-        String lastName = InputOutputUtils.readNotBlankInput(printer, reader,
+        String lastName = inputOutputUtils.readNotBlankInput(printer, reader,
                 messageSourceHolder.getMessage("last.name"));
         printer.printBlankLine();
         credentials = new TestReport.Credentials(firstName, lastName);
