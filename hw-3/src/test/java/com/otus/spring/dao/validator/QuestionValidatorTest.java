@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class QuestionValidatorTest {
 
-    private final static QuestionValidator validator = new QuestionValidator();
+    private final static QuestionValidator validator = new QuestionValidatorImpl();
 
     @Test
     void happyCase_singleSelect_Test() {
