@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class QuestionMapperTest {
 
-    private final QuestionMapper questionMapper = new QuestionMapper(new QuestionValidator());
+    private final QuestionMapper questionMapper = new QuestionMapperImpl(new QuestionValidator());
 
     @Test
     void happyCase_questionTextIsCorrect_Test() {

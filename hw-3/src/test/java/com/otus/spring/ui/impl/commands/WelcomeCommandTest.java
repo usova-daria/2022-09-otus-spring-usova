@@ -2,13 +2,13 @@ package com.otus.spring.ui.impl.commands;
 
 import com.otus.spring.ui.api.MessageSourceHolder;
 import com.otus.spring.ui.api.Printer;
-import com.otus.spring.ui.impl.ConfigurationConstants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static com.otus.spring.ui.api.AnswersParser.ANSWERS_SEPARATOR;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.verify;
 
@@ -31,7 +31,7 @@ class WelcomeCommandTest {
     @Test
     void testRun() {
         command.run(null);
-        verify(messageSourceHolder).getMessage("welcome", ConfigurationConstants.ANSWERS_SEPARATOR);
+        verify(messageSourceHolder).getMessage("welcome", ANSWERS_SEPARATOR);
         assertNull(command.getResult());
     }
 

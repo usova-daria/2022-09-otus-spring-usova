@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 @Component
 public class AnswersParserImpl implements AnswersParser {
 
-    private final static String ANSWERS_SEPARATOR = ConfigurationConstants.ANSWERS_SEPARATOR;
     private final static String ANSWER_REGEX = "(\\d+\\s*" + ANSWERS_SEPARATOR + "*\\s*)+";
     private final static Pattern ANSWER_PATTERN = Pattern.compile(ANSWER_REGEX);
 

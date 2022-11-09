@@ -16,7 +16,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
 
-import static com.otus.spring.ui.impl.ConfigurationConstants.ANSWERS_SEPARATOR;
+import static com.otus.spring.ui.api.AnswersParser.ANSWERS_SEPARATOR;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyInt;
