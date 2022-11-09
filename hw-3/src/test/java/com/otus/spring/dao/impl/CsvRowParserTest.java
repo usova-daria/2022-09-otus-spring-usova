@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CsvRowParserTest {
 
-    private final CsvRowParser parser = new CsvRowParser();
+    private final CsvRowParser parser = new CsvRowParserImpl();
 
     @Test
     void happyCase_Test() {

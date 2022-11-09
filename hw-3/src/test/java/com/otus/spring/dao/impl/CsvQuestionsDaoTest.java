@@ -25,6 +25,9 @@ class CsvQuestionsDaoTest {
     @Mock
     QuestionMapper questionMapper;
 
+    @Mock
+    CsvRowParser csvRowParser;
+
     @BeforeEach
     void init() {
         csvQuestionsDao = createDao("test-questions");
@@ -38,7 +41,7 @@ class CsvQuestionsDaoTest {
 
         return new CsvQuestionsDao(
                 questionFile, contentConfig,
-                new CsvRowParser(),
+                csvRowParser,
                 questionMapper
         );
     }
@@ -48,6 +51,8 @@ class CsvQuestionsDaoTest {
         var answersMap = new LinkedHashMap<Answer, Boolean>();
         answersMap.put(new Answer("first answer"), false);
         answersMap.put(new Answer("second answer"), true);
+        when(csvRowParser.parse("\"First question\", first answer, second answer, 1"))
+                .thenReturn(List.of("First question", "first answer", "second answer", "1"));
         when(questionMapper.map(List.of("First question", "first answer", "second answer", "1")))
                 .thenReturn(new Question("First question", answersMap));
 
