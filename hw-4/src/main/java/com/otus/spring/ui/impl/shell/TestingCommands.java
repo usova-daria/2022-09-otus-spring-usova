@@ -40,7 +40,7 @@ public class TestingCommands {
         welcomeCommand.run(username);
     }
 
-    @ShellMethod(value = "Start test command", key = "start-test")
+    @ShellMethod(value = "Take a test command", key = "take-test")
     @ShellMethodAvailability("isUserAllowedToStartTest")
     public void startTest() {
         testingCommand.run(username);
@@ -54,7 +54,7 @@ public class TestingCommands {
     }
 
     private Availability isUserAllowedToStartTest() {
-        return username == null ? Availability.unavailable(messageSourceHolder.getMessage("login"))
+        return username == null ? Availability.unavailable(messageSourceHolder.getMessage("take.test.failed"))
                                 : Availability.available();
     }
 
