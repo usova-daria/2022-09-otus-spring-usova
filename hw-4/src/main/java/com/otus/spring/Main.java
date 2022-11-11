@@ -7,9 +7,10 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan({"com.otus.spring.dao",
-		"com.otus.spring.service",
-		"com.otus.spring.ui"})
+@ComponentScan({"com.otus.spring.config",
+				"com.otus.spring.dao",
+				"com.otus.spring.service",
+				"com.otus.spring.ui"})
 @EnableConfigurationProperties(ContentConfig.class)
 public class Main {
 
