@@ -4,10 +4,8 @@ import com.otus.spring.model.TestReport;
 import com.otus.spring.ui.api.MessageSourceHolder;
 import com.otus.spring.ui.api.Printer;
 import com.otus.spring.ui.api.commands.Command;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-@Order(4)
 @Component
 public class PrintResultsCommand implements Command {
 

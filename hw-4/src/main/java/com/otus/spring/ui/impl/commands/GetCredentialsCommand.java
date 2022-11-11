@@ -1,15 +1,13 @@
 package com.otus.spring.ui.impl.commands;
 
 import com.otus.spring.model.TestReport;
+import com.otus.spring.ui.api.InputOutputUtils;
 import com.otus.spring.ui.api.MessageSourceHolder;
 import com.otus.spring.ui.api.Printer;
 import com.otus.spring.ui.api.Reader;
 import com.otus.spring.ui.api.commands.Command;
-import com.otus.spring.ui.api.InputOutputUtils;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-@Order(2)
 @Component
 public class GetCredentialsCommand implements Command {
 

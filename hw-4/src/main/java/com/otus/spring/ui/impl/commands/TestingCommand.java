@@ -7,15 +7,12 @@ import com.otus.spring.service.api.QuestionsService;
 import com.otus.spring.ui.api.*;
 import com.otus.spring.ui.api.commands.Command;
 import com.otus.spring.ui.impl.InputFormatException;
-import com.otus.spring.ui.api.InputOutputUtils;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Order(3)
 @Component
 public class TestingCommand implements Command {
 

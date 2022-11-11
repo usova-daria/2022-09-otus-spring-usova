@@ -8,7 +8,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static com.otus.spring.ui.api.AnswersParser.ANSWERS_SEPARATOR;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.verify;
 
@@ -30,8 +29,8 @@ class WelcomeCommandTest {
 
     @Test
     void testRun() {
-        command.run(null);
-        verify(messageSourceHolder).getMessage("welcome", ANSWERS_SEPARATOR);
+        command.run("username");
+        verify(messageSourceHolder).getMessage("welcome", "username");
         assertNull(command.getResult());
     }
 

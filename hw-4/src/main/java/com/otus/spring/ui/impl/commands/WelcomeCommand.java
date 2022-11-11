@@ -3,12 +3,8 @@ package com.otus.spring.ui.impl.commands;
 import com.otus.spring.ui.api.MessageSourceHolder;
 import com.otus.spring.ui.api.Printer;
 import com.otus.spring.ui.api.commands.Command;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import static com.otus.spring.ui.api.AnswersParser.ANSWERS_SEPARATOR;
-
-@Order(1)
 @Component
 public class WelcomeCommand implements Command {
 
@@ -23,7 +19,12 @@ public class WelcomeCommand implements Command {
 
     @Override
     public void run(Object input) {
-        String welcome = messageSourceHolder.getMessage("welcome", ANSWERS_SEPARATOR);
+        if ( !(input instanceof String) ) {
+            throw new IllegalArgumentException("expected input is String");
+        }
+
+        String username = (String) input;
+        String welcome = messageSourceHolder.getMessage("welcome", username);
         printer.println( welcome );
     }
 
