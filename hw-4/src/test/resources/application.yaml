@@ -1,0 +1,12 @@
+spring:
+  messages:
+    basename: messages
+    encoding: UTF-8
+
+questions:
+  file: test-questions.csv
+
+content:
+  default_message: TBD
+  language: ru
+  country: RU
