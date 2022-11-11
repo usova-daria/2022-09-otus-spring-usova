@@ -6,7 +6,7 @@ import com.otus.spring.model.TestReport;
 import com.otus.spring.service.api.QuestionsService;
 import com.otus.spring.ui.api.*;
 import com.otus.spring.ui.impl.InputFormatException;
-import com.otus.spring.ui.impl.InputOutputUtils;
+import com.otus.spring.ui.api.InputOutputUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

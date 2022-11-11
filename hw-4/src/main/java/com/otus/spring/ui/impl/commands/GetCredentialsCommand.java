@@ -5,7 +5,7 @@ import com.otus.spring.ui.api.MessageSourceHolder;
 import com.otus.spring.ui.api.Printer;
 import com.otus.spring.ui.api.Reader;
 import com.otus.spring.ui.api.commands.Command;
-import com.otus.spring.ui.impl.InputOutputUtils;
+import com.otus.spring.ui.api.InputOutputUtils;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +25,8 @@ public class GetCredentialsCommand implements Command {
 
 
     public GetCredentialsCommand(Printer printer, Reader reader,
-                                 MessageSourceHolder messageSourceHolder, InputOutputUtils inputOutputUtils) {
+                                 MessageSourceHolder messageSourceHolder,
+                                 InputOutputUtils inputOutputUtils) {
         this.printer = printer;
         this.reader = reader;
         this.messageSourceHolder = messageSourceHolder;

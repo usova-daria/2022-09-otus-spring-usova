@@ -1,7 +1,4 @@
-package com.otus.spring.ui.impl;
-
-import com.otus.spring.ui.api.Printer;
-import com.otus.spring.ui.api.Reader;
+package com.otus.spring.ui.api;
 
 public interface InputOutputUtils {
 

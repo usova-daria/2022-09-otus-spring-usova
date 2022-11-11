@@ -7,7 +7,7 @@ import com.otus.spring.service.api.QuestionsService;
 import com.otus.spring.ui.api.*;
 import com.otus.spring.ui.api.commands.Command;
 import com.otus.spring.ui.impl.InputFormatException;
-import com.otus.spring.ui.impl.InputOutputUtils;
+import com.otus.spring.ui.api.InputOutputUtils;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 

@@ -3,7 +3,7 @@ package com.otus.spring.ui.impl.commands;
 import com.otus.spring.ui.api.MessageSourceHolder;
 import com.otus.spring.ui.api.Printer;
 import com.otus.spring.ui.api.Reader;
-import com.otus.spring.ui.impl.InputOutputUtils;
+import com.otus.spring.ui.api.InputOutputUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
