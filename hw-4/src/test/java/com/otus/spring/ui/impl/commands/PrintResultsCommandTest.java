@@ -49,13 +49,13 @@ class PrintResultsCommandTest {
 
     @Test
     void happyCase_Test() {
-        TestReport report = new TestReport(new TestReport.Credentials("first name", "last name"));
+        TestReport report = new TestReport(new TestReport.Credentials("username"));
         var question = createQuestion();
         report.addResult(question, List.of(question.getAnswers().get(0)));
 
         command.run(report);
 
-        verify(messageSourceHolder).getMessage("results", "first name last name", 1, 1);
+        verify(messageSourceHolder).getMessage("results", "username", 1, 1);
         assertNull(command.getResult());
     }
 

@@ -28,20 +28,14 @@ public class TestReport {
     }
 
     public static class Credentials {
-        private final String firstName;
-        private final String lastName;
+        private final String username;
 
-        public Credentials(String firstName, String lastName) {
-            this.firstName = firstName;
-            this.lastName = lastName;
+        public Credentials(String username) {
+            this.username = username;
         }
 
-        public String getFirstName() {
-            return firstName;
-        }
-
-        public String getLastName() {
-            return lastName;
+        public String getUsername() {
+            return username;
         }
 
     }

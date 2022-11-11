@@ -35,12 +35,10 @@ public class GetCredentialsCommand implements Command {
 
     @Override
     public void run(Object input) {
-        String firstName = inputOutputUtils.readNotBlankInput(printer, reader,
-                messageSourceHolder.getMessage("first.name"));
-        String lastName = inputOutputUtils.readNotBlankInput(printer, reader,
-                messageSourceHolder.getMessage("last.name"));
+        String username = inputOutputUtils.readNotBlankInput(printer, reader,
+                messageSourceHolder.getMessage("username"));
         printer.printBlankLine();
-        credentials = new TestReport.Credentials(firstName, lastName);
+        credentials = new TestReport.Credentials(username);
     }
 
     @Override

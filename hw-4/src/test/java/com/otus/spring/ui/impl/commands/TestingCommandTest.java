@@ -64,7 +64,7 @@ class TestingCommandTest {
 
     @Test
     void happyCase_Test() {
-        var credentials = new TestReport.Credentials("first name", "last name");
+        var credentials = new TestReport.Credentials("username");
         when(questionsService.getQuestions()).thenReturn(List.of( createQuestion() ));
         when(reader.read()).thenReturn("1");
         when(answersParser.parseAnswers(anyString(), anyInt())).thenReturn(Set.of(1));
@@ -87,7 +87,7 @@ class TestingCommandTest {
 
     @Test
     void invalidAnswerFormat_Test() {
-        var credentials = new TestReport.Credentials("first name", "last name");
+        var credentials = new TestReport.Credentials("username");
         when(questionsService.getQuestions()).thenReturn(List.of( createQuestion() ));
         when(reader.read())
                 .thenReturn("abc")

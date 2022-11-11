@@ -39,20 +39,16 @@ class GetCredentialsCommandTest {
 
     @Test
     void testRun() {
-        var firstName = "first-name";
-        var lastName = "last-name";
+        var username = "username";
         when(reader.read())
-                .thenReturn(firstName)
-                .thenReturn(lastName);
+                .thenReturn(username);
 
         command.run(null);
 
-        verify(messageSourceHolder).getMessage("first.name");
-        verify(messageSourceHolder).getMessage("last.name");
+        verify(messageSourceHolder).getMessage("username");
 
         var credentials = command.getResult();
-        assertEquals(firstName, credentials.getFirstName());
-        assertEquals(lastName, credentials.getLastName());
+        assertEquals(username, credentials.getUsername());
     }
 
     @Test

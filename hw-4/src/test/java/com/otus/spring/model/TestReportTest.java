@@ -11,7 +11,7 @@ class TestReportTest {
 
     @Test
     void addResult_CorrectAnswer_Test() {
-        TestReport report = new TestReport(new TestReport.Credentials("First name", "Last name"));
+        TestReport report = new TestReport(new TestReport.Credentials("Username"));
 
         Answer correctAnswer = new Answer("Correct answer");
         Answer incorrectAnswer = new Answer("Incorrect answer");
@@ -28,7 +28,7 @@ class TestReportTest {
 
     @Test
     void addResult_IncorrectAnswer_Test() {
-        TestReport report = new TestReport(new TestReport.Credentials("First name", "Last name"));
+        TestReport report = new TestReport(new TestReport.Credentials("Username"));
 
         Answer correctAnswer = new Answer("Correct answer");
         Answer incorrectAnswer = new Answer("Incorrect answer");
@@ -45,7 +45,7 @@ class TestReportTest {
 
     @Test
     void addResult_SeriesOfQuestions_Test() {
-        TestReport report = new TestReport(new TestReport.Credentials("First name", "Last name"));
+        TestReport report = new TestReport(new TestReport.Credentials("Username"));
 
         Answer correctAnswer = new Answer("Correct answer");
         Answer incorrectAnswer = new Answer("Incorrect answer");

@@ -27,7 +27,7 @@ public class PrintResultsCommand implements Command {
 
         TestReport report = (TestReport) input;
         String resultsMessage = messageSourceHolder.getMessage("results",
-                report.getCredentials().getFirstName() + " " + report.getCredentials().getLastName(),
+                report.getCredentials().getUsername(),
                 report.getResults().getNumberOfCorrectAnswers(),
                 report.getResults().getTotalNumberOfQuestions());
         printer.println(resultsMessage);
