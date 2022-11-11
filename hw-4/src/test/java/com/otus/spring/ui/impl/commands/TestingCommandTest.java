@@ -2,11 +2,9 @@ package com.otus.spring.ui.impl.commands;
 
 import com.otus.spring.model.Answer;
 import com.otus.spring.model.Question;
-import com.otus.spring.model.TestReport;
 import com.otus.spring.service.api.QuestionsService;
 import com.otus.spring.ui.api.*;
 import com.otus.spring.ui.impl.InputFormatException;
-import com.otus.spring.ui.api.InputOutputUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -64,13 +62,14 @@ class TestingCommandTest {
 
     @Test
     void happyCase_Test() {
-        var credentials = new TestReport.Credentials("username");
+        var username = "username";
         when(questionsService.getQuestions()).thenReturn(List.of( createQuestion() ));
         when(reader.read()).thenReturn("1");
         when(answersParser.parseAnswers(anyString(), anyInt())).thenReturn(Set.of(1));
 
-        command.run(credentials);
+        command.run(username);
 
+        verify(messageSourceHolder).getMessage("delimiter.info", ANSWERS_SEPARATOR);
         verify(printer).println("Question?");
         verify(messageSourceHolder).getMessage("answer");
 
@@ -87,7 +86,7 @@ class TestingCommandTest {
 
     @Test
     void invalidAnswerFormat_Test() {
-        var credentials = new TestReport.Credentials("username");
+        var username = "username";
         when(questionsService.getQuestions()).thenReturn(List.of( createQuestion() ));
         when(reader.read())
                 .thenReturn("abc")
@@ -96,8 +95,9 @@ class TestingCommandTest {
                 .thenThrow(new InputFormatException( InputFormatException.Format.DIGITS_WITH_SEPARATOR, List.of(ANSWERS_SEPARATOR) ))
                 .thenReturn(Set.of(1));
 
-        command.run(credentials);
+        command.run(username);
 
+        verify(messageSourceHolder).getMessage("delimiter.info", ANSWERS_SEPARATOR);
         verify(printer).println("Question?");
         verify(messageSourceHolder, times(2)).getMessage("answer");
         verify(messageSourceHolder).getMessage("format.only.digits.with.separator", ANSWERS_SEPARATOR);

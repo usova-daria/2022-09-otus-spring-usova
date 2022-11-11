@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static com.otus.spring.ui.api.AnswersParser.ANSWERS_SEPARATOR;
+
 @Component
 public class TestingCommand implements Command {
 
@@ -45,11 +47,14 @@ public class TestingCommand implements Command {
 
     @Override
     public void run(Object input) {
-        if ( !(input instanceof TestReport.Credentials) ) {
-            throw new IllegalArgumentException("expected input is TestReport.Credentials");
+        if ( !(input instanceof String) ) {
+            throw new IllegalArgumentException("expected input is String");
         }
 
-        TestReport.Credentials credentials = (TestReport.Credentials) input;
+        printer.println( messageSourceHolder.getMessage("delimiter.info", ANSWERS_SEPARATOR) );
+
+        String username = (String) input;
+        TestReport.Credentials credentials = new TestReport.Credentials(username);
         report = new TestReport(credentials);
 
         List<Question> questions = questionsService.getQuestions();
