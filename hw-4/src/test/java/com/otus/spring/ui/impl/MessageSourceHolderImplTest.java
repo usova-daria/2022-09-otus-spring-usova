@@ -1,6 +1,6 @@
 package com.otus.spring.ui.impl;
 
-import com.otus.spring.config.ContentConfig;
+import com.otus.spring.config.ContentConfiguration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.support.ResourceBundleMessageSource;
@@ -18,7 +18,7 @@ class MessageSourceHolderImplTest {
         var messageSource = new ResourceBundleMessageSource();
         messageSource.setBasename("messages");
 
-        var contentConfig = new ContentConfig();
+        var contentConfig = new ContentConfiguration();
         contentConfig.setCountry("RU");
         contentConfig.setLanguage("ru");
         contentConfig.setDefaultMessage(DEFAULT_MESSAGE);

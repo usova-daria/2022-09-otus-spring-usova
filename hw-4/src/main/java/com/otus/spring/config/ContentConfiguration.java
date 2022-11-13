@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConfigurationProperties(prefix = "content")
-public class ContentConfig {
+public class ContentConfiguration {
 
     private String language;
     private String country;
