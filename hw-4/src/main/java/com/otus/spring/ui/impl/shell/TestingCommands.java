@@ -2,6 +2,7 @@ package com.otus.spring.ui.impl.shell;
 
 import com.otus.spring.model.TestReport;
 import com.otus.spring.ui.api.MessageSourceHolder;
+import com.otus.spring.ui.impl.commands.ChangeLocaleCommand;
 import com.otus.spring.ui.impl.commands.PrintResultsCommand;
 import com.otus.spring.ui.impl.commands.TestingCommand;
 import com.otus.spring.ui.impl.commands.WelcomeCommand;
@@ -22,16 +23,20 @@ public class TestingCommands {
 
     private final MessageSourceHolder messageSourceHolder;
 
+    private final ChangeLocaleCommand changeLocaleCommand;
+
     private String username;
 
     private TestReport report;
 
     public TestingCommands(WelcomeCommand welcomeCommand, MessageSourceHolder messageSourceHolder,
-                           TestingCommand testingCommand, PrintResultsCommand printResultsCommand) {
+                           TestingCommand testingCommand, PrintResultsCommand printResultsCommand,
+                           ChangeLocaleCommand changeLocaleCommand) {
         this.welcomeCommand = welcomeCommand;
         this.messageSourceHolder = messageSourceHolder;
         this.testingCommand = testingCommand;
         this.printResultsCommand = printResultsCommand;
+        this.changeLocaleCommand = changeLocaleCommand;
     }
 
     @ShellMethod(value = "Login command", key = "login")
@@ -47,10 +52,15 @@ public class TestingCommands {
         report = testingCommand.getResult();
     }
 
-    @ShellMethod(value = "Show results", key = "show-results")
+    @ShellMethod(value = "Show results command", key = "show-results")
     @ShellMethodAvailability("isTestTaken")
     public void showResults() {
         printResultsCommand.run(report);
+    }
+
+    @ShellMethod(value = "Change language command", key = "change-language")
+    public void changeLanguage() {
+        changeLocaleCommand.run(null);
     }
 
     private Availability isUserAllowedToStartTest() {

@@ -19,16 +19,17 @@ import java.util.List;
 @Component
 public class CsvQuestionsDao implements QuestionsDao {
 
-    private final String questionsSource;
+    private final String questionsSourceBase;
+    private final ContentConfiguration contentConfiguration;
     private final CsvRowParser parser;
     private final QuestionMapper mapper;
     private final Logger logger = LoggerFactory.getLogger(CsvQuestionsDao.class);
 
-    public CsvQuestionsDao(@Value("${questions.file}") String questionsSource,
+    public CsvQuestionsDao(@Value("${questions.file}") String questionsSourceBase,
                            ContentConfiguration contentConfiguration,
                            CsvRowParser parser, QuestionMapper mapper) {
-        this.questionsSource = questionsSource + "_" + contentConfiguration.getLanguage() +
-                                                 "_" + contentConfiguration.getCountry() + ".csv";
+        this.questionsSourceBase = questionsSourceBase;
+        this.contentConfiguration = contentConfiguration;
         this.parser = parser;
         this.mapper = mapper;
     }
@@ -38,7 +39,7 @@ public class CsvQuestionsDao implements QuestionsDao {
         List<Question> questions = new ArrayList<>();
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    getClass().getClassLoader().getResourceAsStream(questionsSource)
+                    getClass().getClassLoader().getResourceAsStream(getQuestionsSource())
             ));
             String line;
             while ((line = reader.readLine()) != null) {
@@ -51,6 +52,11 @@ public class CsvQuestionsDao implements QuestionsDao {
         }
 
         return questions;
+    }
+
+    private String getQuestionsSource() {
+        return questionsSourceBase + "_" + contentConfiguration.getLanguage() +
+                                     "_" + contentConfiguration.getCountry() + ".csv";
     }
 
 }

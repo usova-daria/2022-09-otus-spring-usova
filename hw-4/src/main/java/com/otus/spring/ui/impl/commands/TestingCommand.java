@@ -24,7 +24,6 @@ public class TestingCommand implements Command {
     private final QuestionsService questionsService;
     private final AnswersParser answersParser;
     private final MessageSourceHolder messageSourceHolder;
-
     private final InputOutputUtils inputOutputUtils;
 
     private TestReport report;

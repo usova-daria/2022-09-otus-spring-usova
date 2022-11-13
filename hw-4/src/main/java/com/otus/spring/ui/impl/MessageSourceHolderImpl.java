@@ -11,7 +11,7 @@ import java.util.Locale;
 @Component
 public class MessageSourceHolderImpl implements MessageSourceHolder {
 
-    private final Locale locale;
+    private final ContentConfiguration contentConfiguration;
 
     private final MessageSource messageSource;
 
@@ -20,14 +20,18 @@ public class MessageSourceHolderImpl implements MessageSourceHolder {
     public MessageSourceHolderImpl(MessageSource messageSource,
                                    ContentConfiguration contentConfiguration) {
         this.messageSource = messageSource;
-        this.locale = new Locale(contentConfiguration.getLanguage(), contentConfiguration.getCountry());
+        this.contentConfiguration = contentConfiguration;
         this.defaultMessage = contentConfiguration.getDefaultMessage();
     }
 
     @Override
     public String getMessage(String key, Object... params) {
-        var pattern = messageSource.getMessage(key, null, defaultMessage, locale);
+        var pattern = messageSource.getMessage(key, null, defaultMessage, getLocale());
         return pattern == null ? defaultMessage : MessageFormat.format(pattern, params);
+    }
+
+    private Locale getLocale() {
+        return new Locale(contentConfiguration.getLanguage(), contentConfiguration.getCountry());
     }
 
 }
