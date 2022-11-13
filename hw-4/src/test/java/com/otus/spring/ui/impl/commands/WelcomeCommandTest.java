@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -28,10 +29,16 @@ class WelcomeCommandTest {
     }
 
     @Test
-    void testRun() {
+    void happyCase_Test() {
         command.run("username");
         verify(messageSourceHolder).getMessage("welcome", "username");
         assertNull(command.getResult());
+    }
+
+    @Test
+    void invalidArguments_Test() {
+        assertThrows(IllegalArgumentException.class, () -> command.run(null));
+        assertThrows(IllegalArgumentException.class, () -> command.run(new Object()));
     }
 
 }
