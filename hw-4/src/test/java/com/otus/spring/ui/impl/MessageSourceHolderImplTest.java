@@ -19,8 +19,8 @@ class MessageSourceHolderImplTest {
         messageSource.setBasename("messages");
 
         var contentConfig = new ContentConfiguration();
-        contentConfig.setCountry("RU");
-        contentConfig.setLanguage("ru");
+        contentConfig.setCountry("US");
+        contentConfig.setLanguage("en");
         contentConfig.setDefaultMessage(DEFAULT_MESSAGE);
 
         messageSourceHolder = new MessageSourceHolderImpl(messageSource, contentConfig);

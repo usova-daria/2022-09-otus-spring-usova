@@ -4,9 +4,9 @@ spring:
     encoding: UTF-8
 
 questions:
-  file: test-questions.csv
+  file: test-questions
 
 content:
   default_message: TBD
-  language: ru
-  country: RU
+  language: en
+  country: US

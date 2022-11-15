@@ -32,6 +32,13 @@ public class LocaleServiceImpl implements LocaleService {
         for (Locale locale : availableMessagesLocales) {
             findLocaleIn(availableQuestionsLocales, locale).ifPresent(availableLocales::add);
         }
+
+        if (!isLocaleAvailable( new Locale(contentConfiguration.getLanguage(),
+                                           contentConfiguration.getCountry()) )) {
+            throw new IllegalStateException("default locale " + contentConfiguration.getLanguage() + "_"
+                                                              + contentConfiguration.getCountry()
+                                                              + " is not supported");
+        }
     }
 
     @Override
